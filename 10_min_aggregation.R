@@ -11,7 +11,8 @@ read_log_files <- function(filepath) {
 }
 
 files <- list.files(
-  "//bgr.local/gzh/Tmp/Berlin/Koeniger.P/2020-05", 
+  # "//bgr.local/gzh/Tmp/Berlin/Koeniger.P/data-log-082021/09", 
+  "C:/Noelscher.M/Desktop/01", 
   pattern = "*.dat",
   full.names = TRUE
   )
@@ -27,7 +28,7 @@ files <- list.files(
 #       )
 #   )
 
-data_raw <- files[1:100] |> 
+data_raw <- files[1:5] |> 
   map_df(read_log_files) |> 
   clean_names()
 
@@ -46,3 +47,7 @@ data_10mins |>
   geom_line(show.legend = FALSE) +
   theme_minimal() +
   facet_wrap(~name, scales = "free_y", ncol = 1)
+
+
+data_10mins |> 
+  write_csv2("data_10mins.csv")
